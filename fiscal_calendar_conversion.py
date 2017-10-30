@@ -3,7 +3,7 @@ import pandas as pd
 import json
 import csv
 
-def fiscal_calendar(date_start, date_stop, output = 'dict'):
+def fiscal_calendar(date_start, date_stop, output = 'df'):
     num_days = date_stop - date_start
     
     fy_date_list = [date_start + dt.timedelta(days = i) for i in range(num_days.days + 1)]
@@ -48,16 +48,6 @@ def fiscal_calendar(date_start, date_stop, output = 'dict'):
 
     fy_month_num = [[i]*j*7 for i,j in zip(fy_month, fy_year_key)]
     fy_month_num = [x for y in fy_month_num for x in y]
-
-    #fy_month_num = []
-    #for i in fy_date_list:
-    #    if i < dt.datetime(fy_year, 2, 1).date():
-    #        fy_month_num.append(2)
-    #    elif i > dt.datetime(fy_year+1,1,1).date():
-    #        fy_month_num.append(1)
-    #    else:
-    #        fy_month_num.append(int(i.strftime('%m')))
-
     fy_month_abb = [s.strftime('%b').upper() for s in fy_date_list]
     fy_date = [s.strftime('%Y-%m-%d') for s in fy_date_list]
 
@@ -75,9 +65,7 @@ def fiscal_calendar(date_start, date_stop, output = 'dict'):
                   'week_of_year': fy_weeks,
                  }
         )
-        #fiscal_year['week_of_month'] = fiscal_year.groupby(['week_of_year', 'month', 'year']).cumcount()
-        #temp_count = fiscal_year.groupby(['year', 'month']).week_of_year.nunique()
-        print fiscal_year.head(30)
+    print fiscal_year.head(30)
 
     return fiscal_year
 
@@ -88,15 +76,3 @@ date_start = dt.datetime(2018, 2, 4).date()
 date_stop = dt.datetime(2019, 2, 2).date()
 
 fy_2016 = fiscal_calendar(date_start = date_start, date_stop = date_stop, output = 'df')
-
-#fy_2016.to_csv('/Users/danielssong/cloud/google_drive/side/tim_fort/fiscal_year_week_2018_new.csv', sep = ',', index = False)
-
-# for dictionary
-#with open('/Users/danielssong/cloud/google_drive/side/tim_fort/fiscal_year_week_2016_dict.csv', 'wb') as fwrite:
-#    w = csv.DictWriter(fwrite, fy_2016.keys())
-#    w.writeheader()
-#    w.writerow(fy_2016)
-
-#with open('/Users/danielssong/cloud/google_drive/side/tim_fort/fiscal_year_week_2016_dict.csv', 'wb') as fwrite:
-#    json.dump(fy_2016, fwrite)
-#print json.dumps(fy_2016, indent=2)
