@@ -69,10 +69,3 @@ def fiscal_calendar(date_start, date_stop, output = 'df'):
 
     return fiscal_year
 
-date_start = dt.datetime(2017, 1, 29).date()
-date_stop = dt.datetime(2018, 2, 3).date()
- 
-date_start = dt.datetime(2018, 2, 4).date()
-date_stop = dt.datetime(2019, 2, 2).date()
-
-fy_2016 = fiscal_calendar(date_start = date_start, date_stop = date_stop, output = 'df')
