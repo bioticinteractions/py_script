@@ -48,12 +48,11 @@ def fiscal_calendar(date_start, date_stop, output = 'df'):
     fy_month = [2,3,4,5,6,7,8,9,10,11,12,1]
 
     # set number of months given the fiscal year
-    if fy_year in range(2010, 2016+1)+[2018]:
-        fy_year_key = [4,4,5,4,4,5,4,4,5,4,5,4]
-    elif fy_year == 2017:
+    ends_in_5 = [2012, 2017]
+    if fy_year in ends_in_5:
         fy_year_key = [4,4,5,4,4,5,4,4,5,4,5,5]
-    else:
-        fy_year_key = []
+    else: 
+        fy_year_key = [4,4,5,4,4,5,4,4,5,4,5,4]
    
     # create list of weeks in a given fiscal month
     fy_month_week = [[x]*7 for y in fy_year_key for x in range(1, y+1)]
