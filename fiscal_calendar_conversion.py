@@ -44,7 +44,7 @@ def fiscal_calendar(date_start, date_stop, output = 'df'):
     # grab fiscal year (to be safe get year of date 60 rows in
     fy_year = int(fy_date_list[60].strftime('%Y'))
 
-    # order of the calendar months for the fiscal year (feb first, jan last)
+    # order of the calendar months for the fiscal year: feb first, jan last
     fy_month = [2,3,4,5,6,7,8,9,10,11,12,1]
 
     # set number of months given the fiscal year
@@ -91,4 +91,22 @@ def fiscal_calendar(date_start, date_stop, output = 'df'):
     print fiscal_year.head(10)
 
     return fiscal_year
+
+def fy_dates(year):
+    
+    fy_dict = {
+        2010: {"date_start": dt.datetime(2010,1, 31).date(), "date_stop": dt.datetime(2011, 1, 29).date()},
+        2011: {"date_start": dt.datetime(2011,1, 30).date(), "date_stop": dt.datetime(2012, 1, 28).date()},
+        2012: {"date_start": dt.datetime(2012,1, 29).date(), "date_stop": dt.datetime(2013, 2, 2).date()},
+        2013: {"date_start": dt.datetime(2013,2, 3).date(), "date_stop": dt.datetime(2014, 2, 1).date()},
+        2014: {"date_start": dt.datetime(2014,2, 2).date(), "date_stop": dt.datetime(2015, 1, 31).date()},
+        2015: {"date_start": dt.datetime(2015,2, 1).date(), "date_stop": dt.datetime(2016, 1, 30).date()},
+        2016: {"date_start": dt.datetime(2016,1, 31).date(), "date_stop": dt.datetime(2017, 1, 28).date()},
+        2017: {"date_start": dt.datetime(2017,1, 29).date(), "date_stop": dt.datetime(2018, 2, 3).date()},
+        2018: {"date_start": dt.datetime(2018,2, 4).date(), "date_stop": dt.datetime(2019, 2, 2).date()}
+    }
+
+    temp_dates = fy_dict.get(year)
+
+    return temp_dates
 
