@@ -47,18 +47,11 @@ def fiscal_calendar(date_start, date_stop, output = 'df'):
     # order of the calendar months for the fiscal year (feb first, jan last)
     fy_month = [2,3,4,5,6,7,8,9,10,11,12,1]
 
-    # set the count of number of weeks for each fiscal month
-    fy_2016 = [4,4,5,4,4,5,4,4,5,4,5,4]
-    fy_2017 = [4,4,5,4,4,5,4,4,5,4,5,5]
-    fy_2018 = [4,4,5,4,4,5,4,4,5,4,5,4]
-   
     # set number of months given the fiscal year
-    if fy_year == 2016:
-        fy_year_key = fy_2016
+    if fy_year in range(2010, 2016+1)+[2018]:
+        fy_year_key = [4,4,5,4,4,5,4,4,5,4,5,4]
     elif fy_year == 2017:
-        fy_year_key = fy_2017
-    elif fy_year == 2018:
-        fy_year_key = fy_2018
+        fy_year_key = [4,4,5,4,4,5,4,4,5,4,5,5]
     else:
         fy_year_key = []
    
@@ -95,7 +88,7 @@ def fiscal_calendar(date_start, date_stop, output = 'df'):
                  }
         )
 
-    # make sure we can the file
+    # make sure to print a few lines to check
     print fiscal_year.head(10)
 
     return fiscal_year
