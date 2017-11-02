@@ -88,22 +88,22 @@ def fiscal_calendar(date_start, date_stop, output = 'df'):
         )
 
     # make sure to print a few lines to check
-    print fiscal_year.head(10)
+    #print fiscal_year.head(10)
 
     return fiscal_year
 
 def fy_dates(year):
     
     fy_dict = {
-        2010: {"date_start": dt.datetime(2010,1, 31).date(), "date_stop": dt.datetime(2011, 1, 29).date()},
-        2011: {"date_start": dt.datetime(2011,1, 30).date(), "date_stop": dt.datetime(2012, 1, 28).date()},
-        2012: {"date_start": dt.datetime(2012,1, 29).date(), "date_stop": dt.datetime(2013, 2, 2).date()},
-        2013: {"date_start": dt.datetime(2013,2, 3).date(), "date_stop": dt.datetime(2014, 2, 1).date()},
-        2014: {"date_start": dt.datetime(2014,2, 2).date(), "date_stop": dt.datetime(2015, 1, 31).date()},
-        2015: {"date_start": dt.datetime(2015,2, 1).date(), "date_stop": dt.datetime(2016, 1, 30).date()},
-        2016: {"date_start": dt.datetime(2016,1, 31).date(), "date_stop": dt.datetime(2017, 1, 28).date()},
-        2017: {"date_start": dt.datetime(2017,1, 29).date(), "date_stop": dt.datetime(2018, 2, 3).date()},
-        2018: {"date_start": dt.datetime(2018,2, 4).date(), "date_stop": dt.datetime(2019, 2, 2).date()}
+        2010: {"date_start": [2010,1, 31], "date_stop": [2011, 1, 29]},
+        2011: {"date_start": [2011,1, 30], "date_stop": [2012, 1, 28]},
+        2012: {"date_start": [2012,1, 29], "date_stop": [2013, 2, 2]},
+        2013: {"date_start": [2013,2, 3], "date_stop": [2014, 2, 1]},
+        2014: {"date_start": [2014,2, 2], "date_stop": [2015, 1, 31]},
+        2015: {"date_start": [2015,2, 1], "date_stop": [2016, 1, 30]},
+        2016: {"date_start": [2016,1, 31], "date_stop": [2017, 1, 28]},
+        2017: {"date_start": [2017,1, 29], "date_stop": [2018, 2, 3]},
+        2018: {"date_start": [2018,2, 4], "date_stop": [2019, 2, 2]}
     }
 
     temp_dates = fy_dict.get(year)
