@@ -6,10 +6,10 @@ def fiscal_calendar(date_start, date_stop, output = 'df'):
     num_days = date_stop - date_start
    
     # create list of dates between the two input dates
-    fy_date_list = [date_start + dt.timedelta(days = i) for i in range(num_days.days + 1)]
+    fy_date_list = [date_start + dt.timedelta(days = i) for i in xrange(num_days.days + 1)]
 
-    # create list with each day
-    fy_date_seq = range(1, num_days.days + 2)
+    # create list with number of total days in year
+    fy_date_seq = xrange(1, num_days.days + 2)
 
     # calculate where weeks end given list dates
     fy_date_list_mod = [i%7 for i in fy_date_seq]
@@ -22,8 +22,6 @@ def fiscal_calendar(date_start, date_stop, output = 'df'):
     t_week = 1
     for i in range(len(fy_date_seq) - 1):
         t_mod = fy_date_list_mod[i]
-        #t_date_0 = dt.datetime(1944, 1, 1).date()
-        #t_date = fy_date_list[i]
         if t_mod == 0:
             fy_weeks += 7*[t_week/7]
             t_week += 1
@@ -41,10 +39,13 @@ def fiscal_calendar(date_start, date_stop, output = 'df'):
     # grab day from date
     cy_day = [int(d.strftime('%d')) for d in fy_date_list]
    
-    # grab fiscal year (to be safe get year of date 60 rows in
+    # grab fiscal year (
+    # arbitrarily chose 60 days after start of year
+    # to avoid jan from last fiscal year and jan of next fiscal year
     fy_year = int(fy_date_list[60].strftime('%Y'))
 
-    # make sure all weeks over 52 count as 52 (except for year 2012, which has 53)
+    # make sure all weeks over 52 count as 52
+    #(except for year 2012, which has 53)
     if fy_year != 2012:
         fy_weeks = [k if k <= 52 else 52 for k in fy_weeks]
     else:
@@ -54,6 +55,7 @@ def fiscal_calendar(date_start, date_stop, output = 'df'):
     fy_month = [2,3,4,5,6,7,8,9,10,11,12,1]
 
     # set number of months given the fiscal year
+    # manually created, from observation
     ends_in_5 = [2012, 2017]
     if fy_year in ends_in_5:
         fy_year_key = [4,4,5,4,4,5,4,4,5,4,5,5]
@@ -61,7 +63,7 @@ def fiscal_calendar(date_start, date_stop, output = 'df'):
         fy_year_key = [4,4,5,4,4,5,4,4,5,4,5,4]
    
     # create list of weeks in a given fiscal month
-    fy_month_week = [[x]*7 for y in fy_year_key for x in range(1, y+1)]
+    fy_month_week = [[x]*7 for y in fy_year_key for x in xrange(1, y+1)]
     fy_month_week = [x for y in fy_month_week for x in y]
 
     # create list of fiscal months
