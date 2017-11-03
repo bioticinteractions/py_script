@@ -102,7 +102,7 @@ def fiscal_calendar(date_start, date_stop, output = 'df'):
 
     return fiscal_year
 
-def fy_dates(year):
+def fy_dates(year=2016, last=False):
     
     fy_dict = {
         2010: {"date_start": [2010,1, 31], "date_stop": [2011, 1, 29]},
@@ -116,7 +116,10 @@ def fy_dates(year):
         2018: {"date_start": [2018,2, 4], "date_stop": [2019, 2, 2]}
     }
 
-    temp_dates = fy_dict.get(year)
+    if last == False:
+        temp_dates = fy_dict.get(year)
+    else:
+        temp_dates= sorted(fy_dict.keys())[-1]
 
     return temp_dates
 
