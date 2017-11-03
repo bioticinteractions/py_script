@@ -39,7 +39,7 @@ def fiscal_calendar(date_start, date_stop, output = 'df'):
     # grab day from date
     cy_day = [int(d.strftime('%d')) for d in fy_date_list]
    
-    # grab fiscal year (
+    # grab fiscal year 
     # arbitrarily chose 60 days after start of year
     # to avoid jan from last fiscal year and jan of next fiscal year
     fy_year = int(fy_date_list[60].strftime('%Y'))
@@ -83,16 +83,17 @@ def fiscal_calendar(date_start, date_stop, output = 'df'):
        fiscal_year = {d[0]:{'month': d[1], 'week_of_year': d[2], 'year': d[3]} for d in zip_list}
 
     if output == 'df':
-        # dataframe
+        # create dataframe from lists created above
         fiscal_year = pd.DataFrame(
-                 {'date': fy_date,
-                  'fiscal_year': fy_year,
-                  'fiscal_month': fy_month_num,
-                  'fiscal_week_of_year': fy_weeks,
-                  'fiscal_week_of_month': fy_month_week,
-                  'cy_year': cy_year,
-                  'cy_month_num': cy_month_num,
-                  'cy_day': cy_day
+                 {
+                    'date': fy_date,
+                    'fiscal_year': fy_year,
+                    'fiscal_month': fy_month_num,
+                    'fiscal_week_of_year': fy_weeks,
+                    'fiscal_week_of_month': fy_month_week,
+                    'cy_year': cy_year,
+                    'cy_month_num': cy_month_num,
+                    'cy_day': cy_day
                  }
         )
 
