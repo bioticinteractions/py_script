@@ -32,17 +32,23 @@ def fiscal_calendar(date_start, date_stop, output = 'df'):
         if t_week == len(fy_date_seq): # for last row, add extra week
             fy_weeks += 7*[num_weeks]
 
-    # make sure all weeks over 52 count as 52
-    fy_weeks = [k if k <= 52 else 52 for k in fy_weeks]
- 
     # convert calendar date to calendar month integer
     cy_month_num = [int(s.strftime('%m')) for s in fy_date_list]
 
     # convert calendar date to calendar year
     cy_year = [int(s.strftime('%Y')) for s in fy_date_list]
+
+    # grab day from date
+    cy_day = [int(d.strftime('%d')) for d in fy_date_list]
    
     # grab fiscal year (to be safe get year of date 60 rows in
     fy_year = int(fy_date_list[60].strftime('%Y'))
+
+    # make sure all weeks over 52 count as 52 (except for year 2012, which has 53)
+    if fy_year != 2012:
+        fy_weeks = [k if k <= 52 else 52 for k in fy_weeks]
+    else:
+        fy_weeks = [k if k <= 53 else 53 for k in fy_weeks]
 
     # order of the calendar months for the fiscal year: feb first, jan last
     fy_month = [2,3,4,5,6,7,8,9,10,11,12,1]
@@ -83,7 +89,8 @@ def fiscal_calendar(date_start, date_stop, output = 'df'):
                   'fiscal_week_of_year': fy_weeks,
                   'fiscal_week_of_month': fy_month_week,
                   'cy_year': cy_year,
-                  'cy_month_num': cy_month_num
+                  'cy_month_num': cy_month_num,
+                  'cy_day': cy_day
                  }
         )
 
