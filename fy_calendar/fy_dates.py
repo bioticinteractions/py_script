@@ -2,7 +2,7 @@
 to get start and end dates of fiscal year
 switch to importing modules only
 """
-class fy_dates:
+class fy_dates(object):
     def __init__(self, year):
         self.year = year
         self.fy_dict = {

@@ -20,7 +20,7 @@ def fiscal_calendar(date_start, date_stop, output = 'df'):
     # calculate number of fiscal weeks
     fy_weeks = []
     t_week = 1
-    for i in range(len(fy_date_seq) - 1):
+    for i in xrange(len(fy_date_seq) - 1):
         t_mod = fy_date_list_mod[i]
         if t_mod == 0:
             fy_weeks += 7*[t_week/7]
